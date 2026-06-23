@@ -1,0 +1,1499 @@
+﻿@startuml
+title Diagrama Completo - TODAS AS CLASSES SEM EXCEÇÃO
+scale max 4000 width
+scale max 4000 height
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Segoe UI", Arial, sans-serif
+skinparam roundcorner 5
+skinparam shadowing false
+skinparam class {
+    BackgroundColor #F8F9FA
+    BorderColor #6C757D
+    HeaderBackgroundColor #E9ECEF
+    FontColor #212529
+    FontSize 12
+    AttributeFontSize 11
+    AttributeFontColor #495057
+}
+skinparam ArrowColor #6C757D
+skinparam ArrowFontColor #495057
+
+class Documento {
+  - tipoDocumento : TipoDocumento
+  + getTipoDocumento() : TipoDocumento
+  + setTipoDocumento(TipoDocumento tipoDocumento) : void
+}
+abstract class Funcionario {
+  - funcionarioSuperior : Funcionario
+  + getFuncionarioSuperior() : Funcionario
+  + setFuncionarioSuperior(Funcionario funcionarioSuperior) : void
+  + {abstract} getDescricaoCargo() : String
+  + assinarDocumento(Documento documento) : String
+}
+class FuncionarioCoordenador {
+  + getDescricaoCargo() : String
+}
+class FuncionarioDiretor {
+  + getDescricaoCargo() : String
+}
+class FuncionarioReitor {
+  + getDescricaoCargo() : String
+}
+class FuncionarioSecretaria {
+  + getDescricaoCargo() : String
+}
+interface TipoDocumento {
+}
+class TipoDocumentoBoleto {
+  + {static} getTipoDocumentoBoleto() : TipoDocumentoBoleto
+}
+class TipoDocumentoCertificado {
+  + {static} getTipoDocumentoCertificado() : TipoDocumentoCertificado
+}
+class TipoDocumentoDiploma {
+  + {static} getTipoDocumentoDiploma() : TipoDocumentoDiploma
+}
+class TipoDocumentoHistorico {
+  + {static} getTipoDocumentoHistorico() : TipoDocumentoHistorico
+}
+class TipoDocumentoMatricula {
+  + {static} getTipoDocumentoMatricula() : TipoDocumentoMatricula
+}
+class AberturaSemestreTarefa {
+  - semestre : Semestre
+  + executar() : void
+  + cancelar() : void
+}
+class FechamentoSemestreTarefa {
+  - semestre : Semestre
+  + executar() : void
+  + cancelar() : void
+}
+class Secretaria {
+  + executarTarefa(Tarefa tarefa) : void
+  + cancelarUltimaTarefa() : void
+}
+class Semestre {
+  - ano : int
+  - semestre : int
+  - situacao : String
+  + getSituacao() : String
+  + abrirSemestre() : void
+  + fecharSemestre() : void
+}
+interface Tarefa {
+}
+class Adicao {
+  - x : double
+  - y : double
+  + interpretar() : double
+}
+class Aluno {
+  - nota1 : double
+  - nota2 : double
+  + getNota1() : double
+  + setNota1(double nota1) : void
+  + getNota2() : double
+  + setNota2(double nota2) : void
+  + calcularNota() : double
+}
+class Divisao {
+  - x : double
+  - y : double
+  + interpretar() : double
+}
+class Escola {
+  + {static} calcularNota(double nota1, double nota2) : double
+}
+interface InterpretadorExpressao {
+  + interpretar() : double
+}
+class InterpretadorExpressoesAritmeticas {
+  - interpretadorInicial : InterpretadorExpressao
+  + interpretar() : double
+}
+class Multiplicacao {
+  - x : double
+  - y : double
+  + interpretar() : double
+}
+class Numero {
+  - numero : double
+  + interpretar() : double
+  + getNumero() : double
+}
+class Subtracao {
+  - x : double
+  - y : double
+  + interpretar() : double
+}
+class Aluno {
+  - nome : String
+  - ativo : boolean
+  + getNome() : String
+  + setNome(String nome) : void
+  + isAtivo() : boolean
+  + setAtivo(boolean ativo) : void
+}
+class Censo {
+  + {static} contarAlunosAtivosCurso(Curso curso) : Integer
+  + {static} contarTotalAlunosCurso(Curso curso) : Integer
+}
+class Curso {
+  + iterator() : Iterator<Aluno>
+}
+class Aluno {
+}
+class Ouvidoria {
+  + {static} getInstancia() : Ouvidoria
+  + receberElogioSecretaria(String mensagem) : String
+  + receberReclamacaoSecretaria(String mensagem) : String
+  + receberSugestaoSecretaria(String mensagem) : String
+}
+class Pessoa {
+  + elogiarSecretaria(String mensagem) : String
+  + reclamarSecretaria(String mensagem) : String
+  + sugerirSecretaria(String mensagem) : String
+}
+class Secretaria {
+  + {static} getInstancia() : Secretaria
+  + receberReclamacao(String mensagem) : String
+  + receberElogio(String mensagem) : String
+  + receberSugestao(String mensagem) : String
+}
+interface Setor {
+}
+class Aluno {
+  - estado : AlunoEstado
+  + getEstado() : AlunoEstado
+  + setEstado(AlunoEstado estado) : void
+  + restauraEstado(int indice) : void
+  + getEstados() : List<AlunoEstado>
+}
+interface AlunoEstado {
+}
+class AlunoEstadoEvadido {
+  + {static} getInstance() : AlunoEstadoEvadido
+  + getNomeEstado() : String
+}
+class AlunoEstadoFormado {
+  + {static} getInstance() : AlunoEstadoFormado
+  + getNomeEstado() : String
+}
+class AlunoEstadoJubilado {
+  + {static} getInstance() : AlunoEstadoJubilado
+  + getNomeEstado() : String
+}
+class AlunoEstadoMatriculado {
+  + {static} getInstance() : AlunoEstadoMatriculado
+  + getNomeEstado() : String
+}
+class AlunoEstadoTrancado {
+  + {static} getInstance() : AlunoEstadoTrancado
+  + getNomeEstado() : String
+}
+class AlunoEstadoTransferido {
+  + {static} getInstance() : AlunoEstadoTransferido
+  + getNomeEstado() : String
+}
+class Aluno {
+  - nome : String
+  - ultimaNotificacao : String
+  + getUltimaNotificacao() : String
+  + matricular(Turma turma) : void
+  + update(Observable turma, Object arg1) : void
+}
+class Turma {
+  - ano : Integer
+  - semestre : Integer
+  - nomeDisciplina : String
+  - nomeTurma : String
+  + lancarNotas() : void
+  + toString() : String
+}
+class Aluno {
+  - nome : String
+  - estado : AlunoEstado
+  + setEstado(AlunoEstado estado) : void
+  + matricular() : boolean
+  + formar() : boolean
+  + trancar() : boolean
+  + jubilar() : boolean
+  + evadir() : boolean
+  + transferir() : boolean
+  + getNomeEstado() : String
+  + getNome() : String
+  + setNome(String nome) : void
+  + getEstado() : AlunoEstado
+}
+abstract class AlunoEstado {
+  + {abstract} getEstado() : String
+  + matricular(Aluno aluno) : boolean
+  + formar(Aluno aluno) : boolean
+  + trancar(Aluno aluno) : boolean
+  + jubilar(Aluno aluno) : boolean
+  + evadir(Aluno aluno) : boolean
+  + transferir(Aluno aluno) : boolean
+}
+class AlunoEstadoEvadido {
+  + {static} getInstance() : AlunoEstadoEvadido
+  + getEstado() : String
+  + jubilar(Aluno aluno) : boolean
+}
+class AlunoEstadoFormado {
+  + {static} getInstance() : AlunoEstadoFormado
+  + getEstado() : String
+}
+class AlunoEstadoJubilado {
+  + {static} getInstance() : AlunoEstadoJubilado
+  + getEstado() : String
+}
+class AlunoEstadoMatriculado {
+  + {static} getInstance() : AlunoEstadoMatriculado
+  + getEstado() : String
+  + formar(Aluno aluno) : boolean
+  + trancar(Aluno aluno) : boolean
+  + jubilar(Aluno aluno) : boolean
+  + evadir(Aluno aluno) : boolean
+  + transferir(Aluno aluno) : boolean
+}
+class AlunoEstadoTrancado {
+  + {static} getInstance() : AlunoEstadoTrancado
+  + getEstado() : String
+  + matricular(Aluno aluno) : boolean
+  + jubilar(Aluno aluno) : boolean
+  + evadir(Aluno aluno) : boolean
+}
+class AlunoEstadoTransferido {
+  + {static} getInstance() : AlunoEstadoTransferido
+  + getEstado() : String
+}
+class Aluno {
+  - nota : float
+  + getNota() : float
+  + somarNota(float nota1, float nota2) : void
+  + subtrairNota(float nota1, float nota2) : void
+  + dividirNota(float nota1, float nota2) : void
+  + multiplicarNota(float nota1, float nota2) : void
+  + calcularMediaNotas(float nota1, float nota2) : void
+}
+class Calculadora {
+  - valor1 : float
+  - valor2 : float
+  + calcular(Operacao operacao) : float
+}
+interface Operacao {
+}
+class OperacaoDividir {
+  + calcular(float valor1, float valor2) : float
+}
+class OperacaoMedia {
+  + calcular(float valor1, float valor2) : float
+}
+class OperacaoMultiplicar {
+  + calcular(float valor1, float valor2) : float
+}
+class OperacaoSomar {
+  + calcular(float valor1, float valor2) : float
+}
+class OperacaoSubtrair {
+  + calcular(float valor1, float valor2) : float
+}
+abstract class Aluno {
+  - matricula : int
+  # nome : String
+  - nota1 : float
+  - nota2 : float
+  + getMatricula() : int
+  + setMatricula(int matricula) : void
+  + getNome() : String
+  + setNome(String nome) : void
+  + getNota1() : float
+  + setNota1(float nota1) : void
+  + getNota2() : float
+  + setNota2(float nota2) : void
+  + calcularMedia() : float
+  + {abstract} verificarAprovacao() : String
+  + getTipo() : String
+  + getInfo() : String
+}
+class AlunoEnsinoMedio {
+  + verificarAprovacao() : String
+}
+class AlunoEnsinoSuperior {
+  + verificarAprovacao() : String
+  + getTipo() : String
+}
+class Aluno {
+  - matricula : int
+  - nome : String
+  - curso : Curso
+  + getMatricula() : int
+  + getNome() : String
+  + getNomeCurso() : String
+  + aceitar(Visitor visitor) : String
+}
+class Curso {
+  - nome : String
+  + getNome() : String
+}
+class Funcionario {
+  - codigo : int
+  - nome : String
+  - salario : float
+  + getCodigo() : int
+  + getNome() : String
+  + getSalario() : float
+  + aceitar(Visitor visitor) : String
+}
+interface Pessoa {
+}
+class PessoaVisitor {
+  + exibir(Pessoa pessoa) : String
+  + exibirAluno(Aluno aluno) : String
+  + exibirProfessor(Professor professor) : String
+  + exibirFuncionario(Funcionario funcionario) : String
+}
+class Professor {
+  - matricula : int
+  - nome : String
+  - titulacao : String
+  + getMatricula() : int
+  + getNome() : String
+  + getTitulacao() : String
+  + aceitar(Visitor visitor) : String
+}
+interface Visitor {
+}
+class Aluno {
+  - diploma : Diploma
+  - historico : Historico
+  + emitirDiploma() : String
+  + emitirHistorico() : String
+}
+interface Diploma {
+}
+class DiplomaGraduacao {
+  + emitir() : String
+}
+class DiplomaPosGraduacao {
+  + emitir() : String
+}
+interface FabricaAbstrata {
+}
+class FabricaGraduacao {
+  + createDiploma() : Diploma
+  + createHistorico() : Historico
+}
+class FabricaPosGraduacao {
+  + createDiploma() : Diploma
+  + createHistorico() : Historico
+}
+interface Historico {
+}
+class HistoricoGraduacao {
+  + emitir() : String
+}
+class HistoricoPosGraduacao {
+  + emitir() : String
+}
+class Aluno {
+  - matricula : int
+  - nome : String
+  - dataNascimento : Date
+  - nomeMae : String
+  - nomePai : String
+  - cpf : String
+  - rg : String
+  - escolaAnterior : String
+  - enderecoLogradouro : String
+  - enderecoNumero : int
+  - enderecoComplemento : String
+  - enderecoBairro : String
+  - enderecoCidade : String
+  - enderecoUF : String
+  - cep : String
+  - email : String
+  - celular : String
+  + getMatricula() : int
+  + setMatricula(int matricula) : void
+  + getNome() : String
+  + setNome(String nome) : void
+  + getDataNascimento() : Date
+  + setDataNascimento(Date dataNascimento) : void
+  + getNomeMae() : String
+  + setNomeMae(String nomeMae) : void
+  + getNomePai() : String
+  + setNomePai(String nomePai) : void
+  + getCpf() : String
+  + setCpf(String cpf) : void
+  + getRg() : String
+  + setRg(String rg) : void
+  + getEscolaAnterior() : String
+  + setEscolaAnterior(String escolaAnterior) : void
+  + getEnderecoLogradouro() : String
+  + setEnderecoLogradouro(String enderecoLogradouro) : void
+  + getEnderecoNumero() : int
+  + setEnderecoNumero(int enderecoNumero) : void
+  + getEnderecoComplemento() : String
+  + setEnderecoComplemento(String enderecoComplemento) : void
+  + getEnderecoBairro() : String
+  + setEnderecoBairro(String enderecoBairro) : void
+  + getEnderecoCidade() : String
+  + setEnderecoCidade(String enderecoCidade) : void
+  + getEnderecoUF() : String
+  + setEnderecoUF(String enderecoUF) : void
+  + getCep() : String
+  + setCep(String cep) : void
+  + getEmail() : String
+  + setEmail(String email) : void
+  + getCelular() : String
+  + setCelular(String celular) : void
+}
+class AlunoBuilder {
+  - aluno : Aluno
+  + build() : Aluno
+  + setMatricula(int matricula) : AlunoBuilder
+  + setNome(String nome) : AlunoBuilder
+  + setDataNascimento(Date dataNascimento) : AlunoBuilder
+  + setNomeMae(String nomeMae) : AlunoBuilder
+  + setNomePai(String nomePai) : AlunoBuilder
+  + setCpf(String cpf) : AlunoBuilder
+  + setRg(String rg) : AlunoBuilder
+  + setEscolaAnterior(String escolaAnterior) : AlunoBuilder
+  + setEnderecoLogradouro(String enderecoLogradouro) : AlunoBuilder
+  + setEnderecoNumero(int enderecoNumero) : AlunoBuilder
+  + setEnderecoComplemento(String enderecoComplemento) : AlunoBuilder
+  + setEnderecoBairro(String enderecoBairro) : AlunoBuilder
+  + setEnderecoCidade(String enderecoCidade) : AlunoBuilder
+  + setEnderecoUF(String enderecoUF) : AlunoBuilder
+  + setCep(String cep) : AlunoBuilder
+  + setEmail(String email) : AlunoBuilder
+  + setCelular(String celular) : AlunoBuilder
+}
+interface IServico {
+}
+class ServicoFactory {
+  + {static} obterServico(String servico) : IServico
+}
+class ServicoFormatura {
+  + executar() : String
+  + cancelar() : String
+}
+class ServicoJubilamento {
+  + executar() : String
+  + cancelar() : String
+}
+class ServicoMatricula {
+  + executar() : String
+  + cancelar() : String
+}
+class ServicoTrancamento {
+  + executar() : String
+  + cancelar() : String
+}
+class Aluno {
+  - matricula : int
+  - nome : String
+  - endereco : Endereco
+  - localNascimento : String
+  + getMatricula() : int
+  + setMatricula(int matricula) : void
+  + getNome() : String
+  + setNome(String nome) : void
+  + getEndereco() : Endereco
+  + setEndereco(Endereco endereco) : void
+  + getLocalNascimento() : String
+  + setLocalNascimento(String localNascimento) : void
+  + clone() : Aluno
+  + toString() : String
+}
+class Endereco {
+  - logradouro : String
+  - numero : Integer
+  + getLogradouro() : String
+  + setLogradouro(String logradouro) : void
+  + getNumero() : Integer
+  + setNumero(Integer numero) : void
+  + clone() : Object
+  + toString() : String
+}
+class Parametros {
+  + {static} getInstance() : Parametros
+  - nomeEscola : String
+  - usuarioLogado : String
+  + getNomeEscola() : String
+  + setNomeEscola(String nomeEscola) : void
+  + getUsuarioLogado() : String
+  + setUsuarioLogado(String usuarioLogado) : void
+}
+class Aluno {
+  + setAvaliacao(String conceito) : void
+  + getAvaliacao() : String
+  + getNota() : float
+}
+class AvaliacaoAdapter {
+  - avaliacaoConceito : IAvaliacao
+  + recuperarAvaliacao() : String
+  + salvarAvaliacao() : void
+}
+class AvaliacaoConceito {
+  - conceito : String
+  + getAvaliacao() : String
+  + setAvaliacao(String conceito) : void
+}
+class AvaliacaoNota {
+  - nota : float
+  + getNota() : float
+  + setNota(float nota) : void
+}
+interface IAvaliacao {
+}
+class Administrativo {
+  + calcularSalario() : float
+}
+abstract class Cargo {
+  # escolaridade : Escolaridade
+  # salarioBase : float
+  + setEscolaridade(Escolaridade escolaridade) : void
+  + setSalarioBase(float salarioBase) : void
+  + {abstract} calcularSalario() : float
+}
+class Coordenador {
+  + calcularSalario() : float
+}
+class Doutorado {
+  + percentualAumento() : float
+}
+class EnsinoMedio {
+  + percentualAumento() : float
+}
+interface Escolaridade {
+}
+class Graduacao {
+  + percentualAumento() : float
+}
+class Mestrado {
+  + percentualAumento() : float
+}
+class Professor {
+  - numAulas : int
+  + setNumAulas(int numAulas) : void
+  + calcularSalario() : float
+}
+abstract class Conteudo {
+  - descricao : String
+  + getDescricao() : String
+  + setDescricao(String descricao) : void
+  + {abstract} getConteudo() : String
+}
+class Disciplina {
+  - ementa : Conteudo
+  + setEmenta(Conteudo ementa) : void
+  + getEmenta() : String
+}
+class Topico {
+  - cargaHoraria : int
+  + getCargaHoraria() : int
+  + setCargaHoraria(int cargaHoraria) : void
+  + getConteudo() : String
+}
+class Unidade {
+  - conteudos : List<Conteudo>
+  + addConteudo(Conteudo conteudo) : void
+  + getConteudo() : String
+}
+class AtividadesComplementares {
+  + getPercentualCargaHoraria() : float
+  + getNomeEstrutura() : String
+}
+interface Curso {
+}
+abstract class CursoDecorator {
+  - curso : Curso
+  + estrutura : String
+  + getCurso() : Curso
+  + setCurso(Curso curso) : void
+  + {abstract} getPercentualCargaHoraria() : float
+  + getCargaHoraria() : float
+  + {abstract} getNomeEstrutura() : String
+  + getEstrutura() : String
+  + setEstrutura(String estrutura) : void
+}
+class CursoGraduacao {
+  + cargaHoraria : float
+  + getCargaHoraria() : float
+  + getEstrutura() : String
+}
+class Estagio {
+  + getPercentualCargaHoraria() : float
+  + getNomeEstrutura() : String
+}
+class TrabalhoConclusaoCurso {
+  + getPercentualCargaHoraria() : float
+  + getNomeEstrutura() : String
+}
+class Aluno {
+  + formar() : boolean
+}
+class AlunoFacade {
+  + {static} verificarPendenciasFormatura(Aluno aluno) : boolean
+}
+class Biblioteca {
+  + {static} getInstancia() : Biblioteca
+}
+class Financeiro {
+  + {static} getInstancia() : Financeiro
+}
+class Secretaria {
+  + {static} getInstancia() : Secretaria
+}
+abstract class Setor {
+  + addAlunoPendente(Aluno aluno) : void
+  + verificarAlunoComPendencia(Aluno aluno) : boolean
+}
+class Aluno {
+  - nome : String
+  - cidadeResidencia : Cidade
+  + obterAluno() : String
+}
+class Cidade {
+  - nome : String
+  - uf : String
+  + getNome() : String
+  + getUf() : String
+}
+class CidadeFactory {
+  + {static} getCidade(String nome, String uf) : Cidade
+  + {static} getTotalCidades() : int
+}
+class Escola {
+  + matricular(String nomeAluno, String nomeCidade, String uf) : void
+  + obterAlunos() : List<String>
+}
+class Aluno {
+  - matricula : Integer
+  - nome : String
+  - cidade : String
+  - nota1 : Float
+  - nota2 : Float
+  + getMatricula() : Integer
+  + obterDadosPessoais() : List<String>
+  + obterNotas(Funcionario funcionario) : List<Float>
+}
+class AlunoProxy {
+  - aluno : Aluno
+  - matricula : Integer
+  + obterDadosPessoais() : List<String>
+  + obterNotas(Funcionario funcionario) : List<Float>
+}
+class BD {
+  + {static} getAluno(Integer matricula) : Aluno
+  + {static} addAluno(Aluno aluno) : void
+}
+class Funcionario {
+  - nome : String
+  - administrador : boolean
+  + getNome() : String
+  + setNome(String nome) : void
+  + isAdministrador() : boolean
+  + setAdministrador(boolean administrador) : void
+}
+interface IAluno {
+}
+class DocumentoTest {
+}
+class SecretariaTest {
+}
+class AlunoTest {
+}
+class InterpretadorExpressaoTest {
+}
+class CensoTest {
+}
+class AlunoTest {
+}
+class AlunoTest {
+}
+class AlunoTest {
+}
+class AlunoTest {
+  + setUp() : void
+  + naoDeveMatricularAlunoMatriculado() : void
+  + deveFormarAlunoMatriculado() : void
+  + deveTrancarAlunoMatriculado() : void
+  + deveJubilarAlunoMatriculado() : void
+  + deveEvadirAlunoMatriculado() : void
+  + deveTransferirAlunoMatriculado() : void
+  + deveMatricularAlunoTrancado() : void
+  + naoDeveFormarAlunoTrancado() : void
+  + naoDeveTrancarAlunoTrancado() : void
+  + deveJubilarAlunoTrancado() : void
+  + deveEvadirAlunoTrancado() : void
+  + naoDeveTransferirAlunoTrancado() : void
+  + naoDeveMatricularAlunoFormado() : void
+  + naoDeveFormarAlunoFormado() : void
+  + naoDeveTrancarAlunoFormado() : void
+  + naoDeveJubilarAlunoFormado() : void
+  + naoDeveEvadirAlunoFormado() : void
+  + naoDeveTransferirAlunoFormado() : void
+  + naoDeveMatricularAlunoJubilado() : void
+  + naoDeveFormarAlunoJubilado() : void
+  + naoDeveTrancarAlunoJubilado() : void
+  + naoDeveJubilarAlunoJubilado() : void
+  + naoDeveEvadirAlunoJubilado() : void
+  + naoDeveTransferirAlunoJubilado() : void
+  + naoDeveMatricularAlunoEvadido() : void
+  + naoDeveFormarAlunoEvadido() : void
+  + naoDeveTrancarAlunoEvadido() : void
+  + deveJubilarAlunoEvadido() : void
+  + naoDeveEvadirAlunoEvadido() : void
+  + naoDeveTransferirAlunoEvadido() : void
+  + naoDeveMatricularAlunoTransferido() : void
+  + naoDeveFormarAlunoTransferido() : void
+  + naoDeveTrancarAlunoTransferido() : void
+  + naoDeveJubilarAlunoTransferido() : void
+  + naoDeveEvadirAlunoTransferido() : void
+  + naoDeveTransferirAlunoTransferido() : void
+}
+class AlunoTest {
+}
+class AlunoEnsinoMedioTest {
+}
+class AlunoEnsinoSuperiorTest {
+}
+class PessoaVisitorTest {
+}
+class AlunoTest {
+}
+class AlunoBuilderTest {
+}
+class ServicoFactoryTest {
+}
+class ServicoFormaturaTest {
+}
+class ServicoMatriculaTest {
+}
+class ServicoTrancamentoTest {
+}
+class AlunoTest {
+}
+class ParametrosTest {
+  + deveRetornarNomeEscola() : void
+  + deveRetornarUsuarioLogado() : void
+}
+class AlunoTest {
+}
+class AdministrativoTest {
+}
+class CoordenadorTest {
+}
+class ProfessorTest {
+}
+class DisciplinaTest {
+}
+class CursoTest {
+}
+class AlunoTest {
+}
+class EscolaTest {
+}
+class AlunoProxyTest {
+}
+interface Acompanhamento {
+}
+class AcompanhamentoBatataFrita {
+  + getNome() : String
+}
+class AcompanhamentoSaladaVerde {
+  + getNome() : String
+}
+class Atendente {
+  + getCargo() : String
+}
+class BancoDados {
+  + {static} getPedido(Integer numero) : PedidoReal
+  + {static} addPedido(PedidoReal pedido) : void
+}
+class Caixa {
+  - estrategiaDesconto : EstrategiaDesconto
+  - valorTotal : double
+  + setEstrategiaDesconto(EstrategiaDesconto estrategiaDesconto) : void
+  + calcularValorFinal() : double
+  + getResumo() : String
+}
+class Cardapio {
+  + adicionarItem(String nomeItem, String nomeIngrediente, String categoria) : void
+  + listarItens() : List<String>
+}
+class Carrinho {
+  + adicionarItem(String item, double preco) : void
+  + removerItem(String item, double preco) : void
+  + salvarEstado() : CarrinhoMemento
+  + restaurarEstado(CarrinhoMemento memento) : void
+  + getItens() : List<String>
+  + getTotal() : double
+  + toString() : String
+}
+class CarrinhoMemento {
+  - itens : String
+  - total : double
+  + getItens() : String
+  + getTotal() : double
+}
+class CategoriaCardapio {
+  - nome : String
+  + adicionarItem(String item) : void
+  + getNome() : String
+  + criarIterador() : IteradorCardapio
+  - itens : List<String>
+  + temProximo() : boolean
+  + proximo() : String
+}
+class CentralPedidos {
+  + registrar(Participante participante) : void
+  + enviarMensagem(String remetente, String mensagem) : void
+  + getMensagens() : List<String>
+}
+class ClienteMediator {
+  - nome : String
+  + getNome() : String
+  + receberMensagem(String remetente, String mensagem) : void
+  + getMensagensRecebidas() : List<String>
+}
+class ClienteObservador {
+  - nome : String
+  + atualizar(int numeroPedido, String status) : void
+  + getNotificacoes() : List<String>
+  + getNome() : String
+}
+interface ComandoCozinha {
+}
+class ComBacon {
+  + getDescricao() : String
+  + getPreco() : double
+}
+class Combo {
+  - nome : String
+  - fabrica : FabricaAbstrata
+  + getNome() : String
+  + getEmbalagem() : Embalagem
+  + getAcompanhamento() : Acompanhamento
+  + descrever() : String
+}
+class ComboComposite {
+  - nome : String
+  + adicionarItem(ItemCardapio item) : void
+  + removerItem(ItemCardapio item) : void
+  + getNome() : String
+  + getPreco() : double
+  + listarItens() : List<String>
+}
+class ComMolhoExtra {
+  + getDescricao() : String
+  + getPreco() : double
+}
+class ComQueijo {
+  + getDescricao() : String
+  + getPreco() : double
+}
+class ConfiguracaoRestaurante {
+  + {static} getInstance() : ConfiguracaoRestaurante
+  - nomeRestaurante : String
+  - enderecoRestaurante : String
+  - horarioFuncionamento : String
+  - usuarioLogado : String
+  + getNomeRestaurante() : String
+  + setNomeRestaurante(String nomeRestaurante) : void
+  + getEnderecoRestaurante() : String
+  + setEnderecoRestaurante(String enderecoRestaurante) : void
+  + getHorarioFuncionamento() : String
+  + setHorarioFuncionamento(String horarioFuncionamento) : void
+  + getUsuarioLogado() : String
+  + setUsuarioLogado(String usuarioLogado) : void
+}
+class ContextoReceita {
+  + setQuantidade(String ingrediente, double quantidade) : void
+  + getQuantidade(String ingrediente) : double
+}
+class Cozinheiro {
+  + getCargo() : String
+}
+class DescontoCupom {
+  - percentual : double
+  - codigoCupom : String
+  + calcularDesconto(double valorOriginal) : double
+  + getDescricao() : String
+}
+class DescontoFidelidade {
+  - pontosFidelidade : int
+  + calcularDesconto(double valorOriginal) : double
+  + getDescricao() : String
+}
+class DescontoHorarioPico {
+  + calcularDesconto(double valorOriginal) : double
+  + getDescricao() : String
+}
+interface Embalagem {
+}
+class EmbalagemClassica {
+  + getTipo() : String
+}
+class EmbalagemVegana {
+  + getTipo() : String
+}
+class Entrega {
+  + {static} getInstancia() : Entrega
+  + processarPedido(int numeroPedido) : String
+}
+class EntregarPedido {
+  - numeroPedido : int
+  + executar() : void
+  + desfazer() : void
+}
+class EstadoCancelado {
+}
+class EstadoEntregue {
+}
+interface EstadoPedido {
+}
+class EstadoPreparando {
+  + receberPedido(PedidoContext pedido) : String
+  + prepararPedido(PedidoContext pedido) : String
+  + finalizarPedido(PedidoContext pedido) : String
+  + cancelarPedido(PedidoContext pedido) : String
+  + getNomeEstado() : String
+}
+class EstadoPronto {
+  + receberPedido(PedidoContext pedido) : String
+  + prepararPedido(PedidoContext pedido) : String
+  + finalizarPedido(PedidoContext pedido) : String
+  + cancelarPedido(PedidoContext pedido) : String
+  + getNomeEstado() : String
+}
+class EstadoRecebido {
+  + receberPedido(PedidoContext pedido) : String
+  + prepararPedido(PedidoContext pedido) : String
+  + finalizarPedido(PedidoContext pedido) : String
+  + cancelarPedido(PedidoContext pedido) : String
+  + getNomeEstado() : String
+}
+interface EstrategiaDesconto {
+}
+interface ExpressaoReceita {
+}
+interface FabricaAbstrata {
+}
+class FabricaComboClassico {
+  + createEmbalagem() : Embalagem
+  + createAcompanhamento() : Acompanhamento
+}
+class FabricaComboVegano {
+  + createEmbalagem() : Embalagem
+  + createAcompanhamento() : Acompanhamento
+}
+abstract class Funcionario {
+  # nome : String
+  # salarioBase : double
+  # turno : Turno
+  + {abstract} getCargo() : String
+  + getNome() : String
+  + getSalario() : double
+  + getTurno() : String
+  + toString() : String
+}
+class GatewayPagamentoExterno {
+  + efetuarCobranca(String moeda, double quantia) : int
+  + consultarStatusCobranca() : String
+}
+class GerenciadorPedidos {
+  + executarComando(ComandoCozinha comando) : void
+  + desfazerUltimoComando() : void
+  + getTotalComandos() : int
+}
+class Gerente {
+  - nome : String
+  - administrador : boolean
+  + getNome() : String
+  + isAdministrador() : boolean
+}
+class Hamburguer {
+  - nome : String
+  - pao : String
+  - carne : String
+  - molho : String
+  - temQueijo : boolean
+  - temBacon : boolean
+  - temAlface : boolean
+  - temTomate : boolean
+  + clone() : Hamburguer
+  + getNome() : String
+  + setNome(String nome) : void
+  + getPao() : String
+  + setPao(String pao) : void
+  + getCarne() : String
+  + setCarne(String carne) : void
+  + getMolho() : String
+  + setMolho(String molho) : void
+  + isTemQueijo() : boolean
+  + setTemQueijo(boolean temQueijo) : void
+  + isTemBacon() : boolean
+  + setTemBacon(boolean temBacon) : void
+  + isTemAlface() : boolean
+  + setTemAlface(boolean temAlface) : void
+  + isTemTomate() : boolean
+  + setTemTomate(boolean temTomate) : void
+  + toString() : String
+}
+class HamburguerComposite {
+  - nome : String
+  + adicionarIngrediente(ItemCardapio item) : void
+  + removerIngrediente(ItemCardapio item) : void
+  + getNome() : String
+  + getPreco() : double
+  + listarItens() : List<String>
+}
+class HamburgueriaApp {
+  + {static} main(String[] args) : void
+}
+class HamburguerSimples {
+  + getDescricao() : String
+  + getPreco() : double
+}
+class HistoricoCarrinho {
+  + salvar(CarrinhoMemento memento) : void
+  + desfazer() : CarrinhoMemento
+  + getTamanhoHistorico() : int
+}
+interface IFormaPagamento {
+}
+interface IItemMenu {
+}
+class Ingrediente {
+  - nome : String
+  - preco : double
+  + getNome() : String
+  + getPreco() : double
+  + listarItens() : List<String>
+}
+class IngredienteCache {
+  - nome : String
+  - categoria : String
+  + getNome() : String
+  + getCategoria() : String
+}
+class IngredienteFactory {
+  + {static} getIngrediente(String nome, String categoria) : IngredienteCache
+  + {static} getTotalIngredientes() : int
+}
+class IngredienteTerminal {
+  - nomeIngrediente : String
+  + interpretar(ContextoReceita contexto) : double
+}
+class InterpretadorReceita {
+  + calcularTotalGramas(ExpressaoReceita expressao, ContextoReceita contexto) : double
+}
+interface IPedido {
+}
+class ItemBebida {
+  + getNome() : String
+  + getPreco() : double
+  + getDescricao() : String
+  + executar() : String
+}
+class ItemBebidaMenu {
+  - nome : String
+  - preco : double
+  - mlPorCopo : int
+  + getNome() : String
+  + getPreco() : double
+  + getMlPorCopo() : int
+  + aceitar(RelatorioVisitor visitor) : String
+}
+interface ItemCardapio {
+}
+class ItemHamburguer {
+  + getNome() : String
+  + getPreco() : double
+  + getDescricao() : String
+  + executar() : String
+}
+class ItemHamburguerMenu {
+  - nome : String
+  - preco : double
+  - caloriasPorPorcao : int
+  + getNome() : String
+  + getPreco() : double
+  + getCaloriasPorPorcao() : int
+  + aceitar(RelatorioVisitor visitor) : String
+}
+class ItemMenuFactory {
+  + {static} obterItem(String tipo) : IItemMenu
+}
+class ItemPedido {
+  - nomeItem : String
+  - ingredientePrincipal : IngredienteCache
+  + obterItem() : String
+}
+class ItemSobremesa {
+  + getNome() : String
+  + getPreco() : double
+  + getDescricao() : String
+  + executar() : String
+}
+class ItemSobremesaMenu {
+  - nome : String
+  - preco : double
+  - semGluten : boolean
+  + getNome() : String
+  + getPreco() : double
+  + isSemGluten() : boolean
+  + aceitar(RelatorioVisitor visitor) : String
+}
+interface ItemVisitavel {
+}
+interface IteradorCardapio {
+}
+interface Lanche {
+}
+abstract class LancheDecorator {
+  # lanche : Lanche
+  + getDescricao() : String
+  + getPreco() : double
+}
+class MultiplicarPorcao {
+  - expressao : ExpressaoReceita
+  - fator : double
+  + interpretar(ContextoReceita contexto) : double
+}
+class NotificadorPedido {
+  - numeroPedido : int
+  - statusAtual : String
+  + registrarObservador(ObservadorPedido observador) : void
+  + removerObservador(ObservadorPedido observador) : void
+  + atualizarStatus(String novoStatus) : void
+  - notificarTodos() : void
+  + getStatusAtual() : String
+}
+interface ObservadorPedido {
+}
+class PagamentoAdapter {
+  - gateway : GatewayPagamentoExterno
+  + processarPagamento(double valor) : boolean
+  + getStatus() : String
+}
+interface Participante {
+}
+class Pedido {
+  - numero : int
+  - nomeCliente : String
+  - observacoes : String
+  - enderecoEntrega : String
+  - formaPagamento : String
+  - itens : List<String>
+  - paraViagem : boolean
+  + getNumero() : int
+  + setNumero(int numero) : void
+  + getNomeCliente() : String
+  + setNomeCliente(String nomeCliente) : void
+  + getObservacoes() : String
+  + setObservacoes(String observacoes) : void
+  + getEnderecoEntrega() : String
+  + setEnderecoEntrega(String enderecoEntrega) : void
+  + getFormaPagamento() : String
+  + setFormaPagamento(String formaPagamento) : void
+  + getItens() : List<String>
+  + setItens(List<String> itens) : void
+  + isParaViagem() : boolean
+  + setParaViagem(boolean paraViagem) : void
+  + toString() : String
+}
+class PedidoBuilder {
+  - pedido : Pedido
+  + build() : Pedido
+  + setNumero(int numero) : PedidoBuilder
+  + setNomeCliente(String nomeCliente) : PedidoBuilder
+  + setObservacoes(String observacoes) : PedidoBuilder
+  + setEnderecoEntrega(String enderecoEntrega) : PedidoBuilder
+  + setFormaPagamento(String formaPagamento) : PedidoBuilder
+  + setItens(List<String> itens) : PedidoBuilder
+  + addItem(String item) : PedidoBuilder
+  + setParaViagem(boolean paraViagem) : PedidoBuilder
+}
+class PedidoContext {
+  - estadoAtual : EstadoPedido
+  - numero : int
+  + setEstado(EstadoPedido estado) : void
+  + getNomeEstado() : String
+  + receberPedido() : String
+  + prepararPedido() : String
+  + finalizarPedido() : String
+  + cancelarPedido() : String
+  + getNumero() : int
+}
+class PedidoFacade {
+  - cozinha : SetorCozinhaFacade
+  - caixa : SetorCaixa
+  - entrega : Entrega
+  + realizarPedido(int numeroPedido) : List<String>
+  + verificarPendencias(int numeroPedido) : boolean
+}
+class PedidoProxy {
+  - pedido : PedidoReal
+  - numero : Integer
+  + obterResumo() : List<String>
+  + obterDetalhesPagamento(Gerente gerente) : List<String>
+}
+class PedidoReal {
+  - numero : Integer
+  - nomeCliente : String
+  - itens : String
+  - formaPagamento : String
+  - valorTotal : double
+  + getNumero() : Integer
+  + obterResumo() : List<String>
+  + obterDetalhesPagamento(Gerente gerente) : List<String>
+}
+class PrepararHamburguer {
+  # montarBase() : String
+  # adicionarIngredientesEspeciais() : List<String>
+}
+abstract class PrepararLanche {
+  # aquecer() : String
+  # adicionarMolho() : String
+  # finalizar() : String
+  # {abstract} montarBase() : String
+  # {abstract} adicionarIngredientesEspeciais() : List<String>
+}
+class PrepararPedido {
+  - numeroPedido : int
+  - itens : String
+  + executar() : void
+  + desfazer() : void
+  + getNumeroPedido() : int
+  + getItens() : String
+}
+class PrepararWrap {
+  # aquecer() : String
+  # montarBase() : String
+  # adicionarIngredientesEspeciais() : List<String>
+}
+class RelatorioCardapioVisitor {
+  + visitarHamburguer(ItemHamburguerMenu hamburguer) : String
+  + visitarBebida(ItemBebidaMenu bebida) : String
+  + visitarSobremesa(ItemSobremesaMenu sobremesa) : String
+}
+interface RelatorioVisitor {
+}
+abstract class Setor {
+  + adicionarPedidoPendente(int numeroPedido) : void
+  + verificarPedidoComPendencia(int numeroPedido) : boolean
+  + {abstract} processarPedido(int numeroPedido) : String
+}
+class SetorCaixa {
+  + {static} getInstancia() : SetorCaixa
+  + processarPedido(int numeroPedido) : String
+}
+class SetorCozinha {
+  - nome : String
+  + getNome() : String
+  + receberMensagem(String remetente, String mensagem) : void
+  + getMensagensRecebidas() : List<String>
+}
+class SetorCozinhaFacade {
+  + {static} getInstancia() : SetorCozinhaFacade
+  + processarPedido(int numeroPedido) : String
+}
+class SolicitacaoPedido {
+  - numeroPedido : int
+  - tipoValidacao : TipoValidacao
+  - aprovado : boolean
+  + getNumeroPedido() : int
+  + getTipoValidacao() : TipoValidacao
+  + isAprovado() : boolean
+  + setAprovado(boolean aprovado) : void
+}
+class SomaIngredientes {
+  - esquerda : ExpressaoReceita
+  - direita : ExpressaoReceita
+  + interpretar(ContextoReceita contexto) : double
+}
+enum TipoValidacao {
+}
+interface Turno {
+}
+class TurnoManha {
+  + getTurno() : String
+  + getAdicionalSalario() : double
+}
+class TurnoNoite {
+  + getTurno() : String
+  + getAdicionalSalario() : double
+}
+class TurnoTarde {
+  + getTurno() : String
+  + getAdicionalSalario() : double
+}
+class ValidadorCozinha {
+  # getTipoValidacao() : TipoValidacao
+  + validar(SolicitacaoPedido solicitacao) : String
+}
+class ValidadorEstoque {
+  # getTipoValidacao() : TipoValidacao
+  + validar(SolicitacaoPedido solicitacao) : String
+}
+class ValidadorPagamento {
+  # getTipoValidacao() : TipoValidacao
+  + validar(SolicitacaoPedido solicitacao) : String
+}
+abstract class ValidadorPedido {
+  # proximo : ValidadorPedido
+  + setProximo(ValidadorPedido proximo) : ValidadorPedido
+  + {abstract} validar(SolicitacaoPedido solicitacao) : String
+  # podeValidar(SolicitacaoPedido solicitacao) : boolean
+  # {abstract} getTipoValidacao() : TipoValidacao
+}
+class SistemaCompletoTest {
+  + testCriarPedidoComBuilder() : void
+  + testEstadoDoPedido() : void
+  + testSingletonConfiguracao() : void
+}
+class ValidacaoPedidoTest {
+  - criarCadeia() : ValidadorPedido
+  + testValidarEstoque() : void
+  + testValidarPagamento() : void
+  + testValidarCozinha() : void
+  + testTipoNaoTratadoRetornaMensagem() : void
+}
+
+Funcionario <|-- FuncionarioCoordenador
+Funcionario <|-- FuncionarioDiretor
+Funcionario <|-- FuncionarioReitor
+Funcionario <|-- FuncionarioSecretaria
+TipoDocumento <|.. TipoDocumentoBoleto
+TipoDocumento <|.. TipoDocumentoCertificado
+TipoDocumento <|.. TipoDocumentoDiploma
+TipoDocumento <|.. TipoDocumentoHistorico
+TipoDocumento <|.. TipoDocumentoMatricula
+Tarefa <|.. AberturaSemestreTarefa
+Tarefa <|.. FechamentoSemestreTarefa
+InterpretadorExpressao <|.. Adicao
+InterpretadorExpressao <|.. Divisao
+InterpretadorExpressao <|.. InterpretadorExpressoesAritmeticas
+InterpretadorExpressao <|.. Multiplicacao
+InterpretadorExpressao <|.. Numero
+InterpretadorExpressao <|.. Subtracao
+Pessoa <|-- Aluno
+Setor <|.. Secretaria
+AlunoEstado <|.. AlunoEstadoEvadido
+AlunoEstado <|.. AlunoEstadoFormado
+AlunoEstado <|.. AlunoEstadoJubilado
+AlunoEstado <|.. AlunoEstadoMatriculado
+AlunoEstado <|.. AlunoEstadoTrancado
+AlunoEstado <|.. AlunoEstadoTransferido
+Observer <|.. Aluno
+Observable <|-- Turma
+AlunoEstado <|-- AlunoEstadoEvadido
+AlunoEstado <|-- AlunoEstadoFormado
+AlunoEstado <|-- AlunoEstadoJubilado
+AlunoEstado <|-- AlunoEstadoMatriculado
+AlunoEstado <|-- AlunoEstadoTrancado
+AlunoEstado <|-- AlunoEstadoTransferido
+Operacao <|.. OperacaoDividir
+Operacao <|.. OperacaoMedia
+Operacao <|.. OperacaoMultiplicar
+Operacao <|.. OperacaoSomar
+Operacao <|.. OperacaoSubtrair
+Aluno <|-- AlunoEnsinoMedio
+Aluno <|-- AlunoEnsinoSuperior
+Pessoa <|.. Aluno
+Pessoa <|.. Funcionario
+Visitor <|.. PessoaVisitor
+Pessoa <|.. Professor
+Diploma <|.. DiplomaGraduacao
+Diploma <|.. DiplomaPosGraduacao
+FabricaAbstrata <|.. FabricaGraduacao
+FabricaAbstrata <|.. FabricaPosGraduacao
+Historico <|.. HistoricoGraduacao
+Historico <|.. HistoricoPosGraduacao
+IServico <|.. ServicoFormatura
+IServico <|.. ServicoMatricula
+IServico <|.. ServicoTrancamento
+Cloneable <|.. Aluno
+Cloneable <|.. Endereco
+AvaliacaoNota <|-- AvaliacaoAdapter
+IAvaliacao <|.. AvaliacaoConceito
+Cargo <|-- Administrativo
+Cargo <|-- Coordenador
+Escolaridade <|.. Doutorado
+Escolaridade <|.. EnsinoMedio
+Escolaridade <|.. Graduacao
+Escolaridade <|.. Mestrado
+Cargo <|-- Professor
+Conteudo <|-- Topico
+Conteudo <|-- Unidade
+CursoDecorator <|-- AtividadesComplementares
+Curso <|.. CursoDecorator
+Curso <|.. CursoGraduacao
+CursoDecorator <|-- Estagio
+CursoDecorator <|-- TrabalhoConclusaoCurso
+Setor <|-- Biblioteca
+Setor <|-- Financeiro
+Setor <|-- Secretaria
+IAluno <|.. Aluno
+IAluno <|.. AlunoProxy
+Acompanhamento <|.. AcompanhamentoBatataFrita
+Acompanhamento <|.. AcompanhamentoSaladaVerde
+Funcionario <|-- Atendente
+Participante <|.. ClienteMediator
+ObservadorPedido <|.. ClienteObservador
+LancheDecorator <|-- ComBacon
+ItemCardapio <|.. ComboComposite
+LancheDecorator <|-- ComMolhoExtra
+LancheDecorator <|-- ComQueijo
+Funcionario <|-- Cozinheiro
+EstrategiaDesconto <|.. DescontoCupom
+EstrategiaDesconto <|.. DescontoFidelidade
+EstrategiaDesconto <|.. DescontoHorarioPico
+Embalagem <|.. EmbalagemClassica
+Embalagem <|.. EmbalagemVegana
+Setor <|-- Entrega
+ComandoCozinha <|.. EntregarPedido
+EstadoPedido <|.. EstadoCancelado
+EstadoPedido <|.. EstadoEntregue
+EstadoPedido <|.. EstadoPreparando
+EstadoPedido <|.. EstadoPronto
+EstadoPedido <|.. EstadoRecebido
+FabricaAbstrata <|.. FabricaComboClassico
+FabricaAbstrata <|.. FabricaComboVegano
+Cloneable <|.. Hamburguer
+ItemCardapio <|.. HamburguerComposite
+Lanche <|.. HamburguerSimples
+ItemCardapio <|.. Ingrediente
+ExpressaoReceita <|.. IngredienteTerminal
+IItemMenu <|.. ItemBebida
+ItemVisitavel <|.. ItemBebidaMenu
+IItemMenu <|.. ItemHamburguer
+ItemVisitavel <|.. ItemHamburguerMenu
+IItemMenu <|.. ItemSobremesa
+ItemVisitavel <|.. ItemSobremesaMenu
+Lanche <|.. LancheDecorator
+ExpressaoReceita <|.. MultiplicarPorcao
+IFormaPagamento <|.. PagamentoAdapter
+IPedido <|.. PedidoProxy
+IPedido <|.. PedidoReal
+PrepararLanche <|-- PrepararHamburguer
+ComandoCozinha <|.. PrepararPedido
+PrepararLanche <|-- PrepararWrap
+RelatorioVisitor <|.. RelatorioCardapioVisitor
+Setor <|-- SetorCaixa
+Participante <|.. SetorCozinha
+Setor <|-- SetorCozinhaFacade
+ExpressaoReceita <|.. SomaIngredientes
+Turno <|.. TurnoManha
+Turno <|.. TurnoNoite
+Turno <|.. TurnoTarde
+ValidadorPedido <|-- ValidadorCozinha
+ValidadorPedido <|-- ValidadorEstoque
+ValidadorPedido <|-- ValidadorPagamento
+@enduml
